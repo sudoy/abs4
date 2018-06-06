@@ -13,6 +13,26 @@ public class IndexServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+//
+//		Connection con = null;
+//		PreparedStatement ps = null;
+//		String sql = null;
+//		ResultSet rs = null;
+//
+//		try {
+//			con = DBUtils.getConnection();
+//
+//			sql = "select day, category_id, content, cost from details";
+//
+//			ps = con.prepareStatement(sql);
+//
+//			rs = ps.executeQuery();
+//
+//		} catch (Exception e) {
+//			throw new ServletException();
+//		}finally {
+//			DBUtils.close(con, ps, rs);
+//		}
 
 		req.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 

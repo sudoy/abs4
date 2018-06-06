@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*, javax.naming.*, javax.sql.*, java.text.*" %>
 
 <jsp:include page="_header.jsp"/>
 <jsp:include page="_success.jsp"/>
@@ -68,7 +69,27 @@
 							<th scope="col" style="width: 120px;">金額</th>
 						</tr>
 					</thead>
+<%
+Connection con = null;
+PreparedStatement ps = null;
+String sql = null;
+ResultSet rs = null;
+
+try {
+	Context initContext = new InitialContext();
+	Context envContext = (Context)initContext.lookup("java:/comp/env");
+	DataSource ds = (DataSource)envContext.lookup("abs4");
+
+	con = ds.getConnection();
+
+	sql = "select day, type, content, cost from details d JOIN categories ON d.category_id = categories.id ORDER BY d.id";
+
+	ps = con.prepareStatement(sql);
+
+	rs = ps.executeQuery(); %>
+
 					<tbody>
+					<% while(rs.next()){%>
 						<tr class="table-light">
 							<th scope="row">
 								<div class="btn-group">
@@ -83,12 +104,35 @@
 									</div>
 								</div>
 							</th>
-							<td>2018/05/30</td>
-							<td>日用品</td>
-							<td>ティッシュペーパー、歯磨き粉など</td>
-							<td class="text-right">-740</td>
+							<td><%=rs.getString("day") %></td>
+							<td><%=rs.getString("type") %></td>
+							<td><%=rs.getString("content") %></td>
+							<td class="text-right"><%=rs.getInt("cost") %></td>
 						</tr>
-						<tr class="table-light">
+
+<%
+ 	}
+} catch (Exception e) {
+	e.printStackTrace();
+}finally {
+	try{
+		if(con != null){
+			con.close();
+		}
+
+		if(ps != null){
+			ps.close();
+		}
+
+		if(rs != null){
+			rs.close();
+		}
+
+	}catch(Exception e){}
+}
+%>
+
+<!--  					<tr class="table-light">
 							<th scope="row">
 								<div class="btn-group">
 									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -165,7 +209,7 @@
 							<td></td>
 							<td class="text-right">-6,800</td>
 						</tr>
-					</tbody>
+					</tbody>-->
 				</table>
 			</div>
 		</div>
