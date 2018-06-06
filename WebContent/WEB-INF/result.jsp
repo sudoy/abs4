@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="_header.jsp"/>
 
 		<div class="row">
 			<div class="offset-1 col">
@@ -132,6 +132,5 @@
 				</table>
 			</div>
 		</div>
-	</div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="_footer.jsp"/>

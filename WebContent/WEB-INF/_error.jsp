@@ -7,8 +7,13 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<ul>
+						<li>日付は必須入力です。</li>
+						<li>カテゴリーは必須入力です。</li>
+						<li>金額は必須入力です。</li>
 						<li>検索結果は1件もありません。</li>
 					</ul>
 				</div>
 			</div>
 		</div>
+
+

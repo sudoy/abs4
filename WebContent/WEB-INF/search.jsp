@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:include page="header.jsp"/>
-<jsp:include page="error2.jsp"/>
+<jsp:include page="_header.jsp"/>
+<jsp:include page="_error.jsp"/>
 
 		<div class="row justify-content-between">
 			<div class="offset-1 col">
@@ -70,6 +70,5 @@
 				</div>
 			</div>
 		</form>
-	</div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="_footer.jsp"/>

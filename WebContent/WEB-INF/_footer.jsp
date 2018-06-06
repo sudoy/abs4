@@ -1,5 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 
+	</div>
+
 	<hr>
 
 	<footer class="footer">
