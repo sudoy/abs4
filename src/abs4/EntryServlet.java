@@ -34,6 +34,8 @@ public class EntryServlet extends HttpServlet {
 		String content = req.getParameter("content");
 		String cost = req.getParameter("cost");
 
+		String division = req.getParameter("division");
+
 		Connection con = null;
 		PreparedStatement ps = null;
 

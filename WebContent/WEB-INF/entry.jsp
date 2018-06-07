@@ -54,7 +54,7 @@
 			<div class="form-group row">
 				<label for="note" class="offset-2 col-sm-2 col-form-label font-weight-bold">備考</label>
 				<div class="col-6">
-					<textarea class="form-control" name="content" id="note" placeholder="備考" rows="3" value=""></textarea>
+					<textarea class="form-control" name="content" id="note" placeholder="備考" rows="3"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">

@@ -19,6 +19,4 @@ public class HtmlUtils {
 		return cost2 = String.format("%,d", abs4.getCost() );
 	}
 
-
-
 }
