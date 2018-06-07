@@ -21,6 +21,14 @@ public class HtmlUtils {
 		return String.format("%,d", detail.getCost());
 	}
 
+	public static String formatCost(int cost) {
+		return String.format("%,d", cost);
+	}
+
+	public static String formatCostDiff(int cost) {
+		return String.format("%+,d", cost);
+	}
+
 	public static String checkDivision(String param, String value) {
 		if(param.equals("") && value.equals("minus")) {
 			return "checked";
