@@ -17,4 +17,5 @@
 		</div>
 	</div>
 </div>
+<c:set var="errors" value="${null}" scope="session"/>
 </c:if>

@@ -11,9 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import abs4.utils.DBUtils;
-import abs4.utils.Utils;
 
 @WebServlet("/entry.html")
 public class EntryServlet extends HttpServlet {
@@ -21,7 +21,6 @@ public class EntryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		req.setAttribute("categories", Utils.allCategories());
 		getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
 	}
 
@@ -30,6 +29,7 @@ public class EntryServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		req.setCharacterEncoding("utf-8");
+		HttpSession session = req.getSession();
 
 		String day = req.getParameter("day");
 		String categoryId = req.getParameter("category_id");
@@ -41,7 +41,6 @@ public class EntryServlet extends HttpServlet {
 
 		if(errors.size() > 0) {
 			req.setAttribute("errors", errors);
-			req.setAttribute("categories", Utils.allCategories());
 			getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
 			return;
 		}
@@ -63,6 +62,11 @@ public class EntryServlet extends HttpServlet {
 			ps.setString(4, division.equals("minus") ? "-" + cost : cost);
 
 			ps.executeUpdate();
+
+			// 成功メッセージ
+			List<String> successes = new ArrayList<>();
+			successes.add("登録しました。");
+			session.setAttribute("successes", successes);
 
 			resp.sendRedirect("index.html");
 
