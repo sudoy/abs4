@@ -41,7 +41,7 @@ public class Detail {
 		this.cost = cost;
 	}
 
-	public Abs4(LocalDate day, String type, String content, int cost) {
+	public Detail(LocalDate day, String type, String content, int cost) {
 		super();
 		this.day = day;
 		this.type = type;
