@@ -72,8 +72,8 @@
 					</thead>
 
 					<tbody>
-						<c:forEach var="details" items="${list}">
-						<tr class="${details.cost > 0 ? "table-info" : "table-light" }">
+						<c:forEach var="detail" items="${list}">
+						<tr class="${details.cost > 0 ? 'table-info' : 'table-light' }">
 							<th scope="row">
 								<div class="btn-group">
 									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -88,10 +88,10 @@
 								</div>
 							</th>
 
-							<td>${HtmlUtils.formatDay(details)}</td>
-							<td>${details.type}</td>
-							<td>${details.content}</td>
-							<td class="text-right">${HtmlUtils.formatCost(details)}</td>
+							<td>${HtmlUtils.formatDay(detail)}</td>
+							<td>${detail.type}</td>
+							<td>${detail.content}</td>
+							<td class="text-right">${HtmlUtils.formatCost(detail)}</td>
 						</tr>
 						</c:forEach>
 
