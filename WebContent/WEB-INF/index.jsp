@@ -73,7 +73,7 @@
 
 					<tbody>
 						<c:forEach var="details" items="${list}">
-						<tr class="cost > 0 ? table-info : table-light">
+						<tr class="${details.cost > 0 ? table-info : table-light}">
 							<th scope="row">
 								<div class="btn-group">
 									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
