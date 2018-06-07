@@ -1,5 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
+<%@ page import="abs4.utils.HtmlUtils" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="_header.jsp"/>
 <jsp:include page="_success.jsp"/>
@@ -29,11 +30,11 @@
 					<legend class="offset-2 col-form-label col-2 pt-0 font-weight-bold">区分</legend>
 					<div class="col-sm-8">
 						<div class="custom-control custom-radio custom-control-inline">
-							<input type="radio" id="division1" name="division" class="custom-control-input" checked>
+							<input type="radio" id="division1" name="division" class="custom-control-input" value="minus" checked>
 							<label class="custom-control-label" for="division1">支出</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
-							<input type="radio" id="division2" name="division" class="custom-control-input">
+							<input type="radio" id="division2" name="division" class="custom-control-input" value="plus">
 							<label class="custom-control-label" for="division2">収入</label>
 						</div>
 					</div>
@@ -44,10 +45,9 @@
 				<label for="category" class="offset-2 col-sm-2 col-form-label font-weight-bold">カテゴリー <span class="badge badge-danger">必須</span></label>
 				<div class="col-4">
 					<select class="custom-select" name="category_id" id="category">
-						<option value="1"selected>選択して下さい</option>
-						<option value="2">食費</option>
-						<option value="3">日用品</option>
-						<option value="4">交際費</option>
+						<c:forEach var="category" items="${categories}">
+							<option value="${category.id}">${category.type}</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
