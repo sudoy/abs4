@@ -73,17 +73,17 @@
 
 					<tbody>
 						<c:forEach var="detail" items="${list}">
-						<tr class="${details.cost > 0 ? 'table-info' : 'table-light' }">
+						<tr class="${detail.cost > 0 ? 'table-info' : 'table-light' }">
 							<th scope="row">
 								<div class="btn-group">
 									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										操作
 									</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="copy.html"><span class="oi oi-paperclip"></span> コピー</a>
+										<a class="dropdown-item" href="detail.html?id=${detail.id}"><span class="oi oi-spreadsheet"></span> 詳細</a>
+										<a class="dropdown-item" href="copy.html?id=${detail.id}"><span class="oi oi-paperclip"></span> コピー</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
+										<a class="dropdown-item delete-btn" href="detail.html?id=${detail.id}"><span class="oi oi-trash"></span> 削除</a>
 									</div>
 								</div>
 							</th>
