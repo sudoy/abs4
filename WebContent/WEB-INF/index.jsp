@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*, javax.naming.*, javax.sql.*, java.text.*" %>
+<%@ page import="abs4.utils.HtmlUtils" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="_header.jsp"/>
 <jsp:include page="_success.jsp"/>
@@ -69,28 +70,10 @@
 							<th scope="col" style="width: 120px;">金額</th>
 						</tr>
 					</thead>
-<%
-Connection con = null;
-PreparedStatement ps = null;
-String sql = null;
-ResultSet rs = null;
-
-try {
-	Context initContext = new InitialContext();
-	Context envContext = (Context)initContext.lookup("java:/comp/env");
-	DataSource ds = (DataSource)envContext.lookup("abs4");
-
-	con = ds.getConnection();
-
-	sql = "select day, type, content, cost from details d JOIN categories ON d.category_id = categories.id ORDER BY d.id";
-
-	ps = con.prepareStatement(sql);
-
-	rs = ps.executeQuery(); %>
 
 					<tbody>
-					<% while(rs.next()){%>
-						<tr class="table-light">
+						<c:forEach var="details" items="${list}">
+						<tr class="cost > 0 ? table-info : table-light">
 							<th scope="row">
 								<div class="btn-group">
 									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -104,112 +87,15 @@ try {
 									</div>
 								</div>
 							</th>
-							<td><%=rs.getString("day") %></td>
-							<td><%=rs.getString("type") %></td>
-							<td><%=rs.getString("content") %></td>
-							<td class="text-right"><%=rs.getInt("cost") %></td>
+
+							<td>${HtmlUtils.formatDay(details)}</td>
+							<td>${details.type}</td>
+							<td>${details.content}</td>
+							<td class="text-right">${HtmlUtils.formatCost(details)}</td>
 						</tr>
+						</c:forEach>
 
-<%
- 	}
-} catch (Exception e) {
-	e.printStackTrace();
-}finally {
-	try{
-		if(con != null){
-			con.close();
-		}
-
-		if(ps != null){
-			ps.close();
-		}
-
-		if(rs != null){
-			rs.close();
-		}
-
-	}catch(Exception e){}
-}
-%>
-
-<!--  					<tr class="table-light">
-							<th scope="row">
-								<div class="btn-group">
-									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										操作
-									</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="copy.html"><span class="oi oi-paperclip"></span> コピー</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
-									</div>
-								</div>
-							</th>
-							<td>2018/05/30</td>
-							<td>食費</td>
-							<td>ランチ</td>
-							<td class="text-right">-800</td>
-						</tr>
-						<tr class="table-light">
-							<th scope="row">
-								<div class="btn-group">
-									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										操作
-									</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="copy.html"><span class="oi oi-paperclip"></span> コピー</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
-									</div>
-								</div>
-							</th>
-							<td>2018/05/30</td>
-							<td>交際費</td>
-							<td></td>
-							<td class="text-right">-6,800</td>
-						</tr>
-						<tr class="table-info">
-							<th scope="row">
-								<div class="btn-group">
-									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										操作
-									</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="copy.html"><span class="oi oi-paperclip"></span> コピー</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
-									</div>
-								</div>
-							</th>
-							<td>2018/05/31</td>
-							<td>アルバイト代</td>
-							<td></td>
-							<td class="text-right">120,000</td>
-						</tr>
-						<tr class="table-light">
-							<th scope="row">
-								<div class="btn-group">
-									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										操作
-									</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="update.html"><span class="oi oi-paperclip"></span> コピー</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
-									</div>
-								</div>
-
-							</th>
-							<td>2018/05/31</td>
-							<td>交際費</td>
-							<td></td>
-							<td class="text-right">-6,800</td>
-						</tr>
-					</tbody>-->
+					</tbody>
 				</table>
 			</div>
 		</div>
