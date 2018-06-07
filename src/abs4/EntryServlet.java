@@ -66,6 +66,7 @@ public class EntryServlet extends HttpServlet {
 		String category_id = req.getParameter("category_id");
 		String content = req.getParameter("content");
 		String cost = req.getParameter("cost");
+		String division = req.getParameter("division");
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -81,7 +82,7 @@ public class EntryServlet extends HttpServlet {
 			ps.setString(1, day);
 			ps.setString(2, category_id);
 			ps.setString(3, content.equals("")? null : content);
-			ps.setString(4, cost);
+			ps.setString(4, division.equals("minus") ? "-" + cost : cost);
 
 			ps.executeUpdate();
 
@@ -92,7 +93,5 @@ public class EntryServlet extends HttpServlet {
 		} finally {
 			DBUtils.close(con, ps);
 		}
-
-//		req.getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
 	}
 }
