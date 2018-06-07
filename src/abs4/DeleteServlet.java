@@ -34,8 +34,8 @@ public class DeleteServlet extends HttpServlet {
 
 			ps.setString(1, id);
 
-			System.out.println(ps);
 			ps.executeUpdate();
+
 
 			resp.sendRedirect("index.html");
 

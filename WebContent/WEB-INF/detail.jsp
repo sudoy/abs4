@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="abs4.utils.HtmlUtils" %>
 
 <jsp:include page="_header.jsp"/>
 <jsp:include page="_success.jsp"/>
@@ -17,7 +18,7 @@
 			<div class="form-group row">
 				<label for="date" class="offset-2 col-sm-2 col-form-label font-weight-bold">日付</label>
 				<div class="col-2">
-					<input type="text" class="form-control" id="date" placeholder="日付" aria-describedby="dateHelp" value="2018/05/31" readonly>
+					<input type="text" class="form-control" name="day" id="date" placeholder="日付" aria-describedby="dateHelp" value="${HtmlUtils.formatDay(dl)}" readonly>
 				</div>
 				<div class="col-4">
 					<small id="dateHelp" class="text-muted align-bottom">「YYYY/MM/DD」形式で入力してください。</small>
@@ -43,7 +44,7 @@
 			<div class="form-group row">
 				<label for="category" class="offset-2 col-sm-2 col-form-label font-weight-bold">カテゴリー</label>
 				<div class="col-4">
-					<select class="custom-select" id="category" disabled>
+					<select class="custom-select" name="type" id="category" disabled>
 						<option>選択して下さい</option>
 						<option selected>食費</option>
 						<option>日用品</option>
@@ -54,13 +55,13 @@
 			<div class="form-group row">
 				<label for="note" class="offset-2 col-sm-2 col-form-label font-weight-bold">備考</label>
 				<div class="col-6">
-					<textarea class="form-control" id="note" placeholder="備考" rows="3" readonly>ランチ</textarea>
+					<textarea class="form-control" name="content" id="note" placeholder="備考" rows="3" readonly>${dl.content}</textarea>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="amount" class="offset-2 col-sm-2 col-form-label font-weight-bold">金額</label>
 				<div class="col-2">
-					<input type="text" class="form-control" id="amount" placeholder="金額" value="800" readonly>
+					<input type="text" class="form-control" name="cost" id="amount" placeholder="金額" value="${HtmlUtils.formatCost(dl)}" readonly>
 				</div>
 			</div>
 
