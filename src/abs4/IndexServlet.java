@@ -30,18 +30,19 @@ public class IndexServlet extends HttpServlet {
 		try {
 			con = DBUtils.getConnection();
 
-			sql = "select day, type, content, cost from details d"
-					+" JOIN categories ON d.category_id = categories.id"
-					+" ORDER BY d.id";
+			sql = "SELECT d.id, d.day, c.type, d.content, d.cost "
+					+ "FROM  details d "
+					+ "JOIN categories c ON d.category_id = c.id "
+					+ "ORDER BY d.id";
 
 			ps = con.prepareStatement(sql);
-
 			rs = ps.executeQuery();
 
 			ArrayList<Detail> list = new ArrayList<>();
 
 			while(rs.next()) {
 				Detail abs4 = new Detail(
+						rs.getInt("id"),
 						Utils.date2LocalDate(rs.getDate("day")),
 						rs.getString("type"),
 						rs.getString("content"),
