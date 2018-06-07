@@ -1,5 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
+<%@ page import="abs4.utils.HtmlUtils" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="_header.jsp"/>
 <jsp:include page="_success.jsp"/>
@@ -44,10 +45,9 @@
 				<label for="category" class="offset-2 col-sm-2 col-form-label font-weight-bold">カテゴリー <span class="badge badge-danger">必須</span></label>
 				<div class="col-4">
 					<select class="custom-select" name="category_id" id="category">
-						<option value="1"selected>選択して下さい</option>
-						<option value="2">食費</option>
-						<option value="3">日用品</option>
-						<option value="4">交際費</option>
+						<c:forEach var="category" items="${categories}">
+							<option value="${category.id}">${category.type}</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
