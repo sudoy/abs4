@@ -3,6 +3,9 @@ package abs4;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,13 +89,31 @@ public class EntryServlet extends HttpServlet {
 		}
 
 		// 日付の形式チェック（YYYY/MM/DD）
+		if(!day.equals("")) {
+			try {
+				LocalDate.parse(day, DateTimeFormatter.ofPattern("uuuu/MM/dd")
+						.withResolverStyle(ResolverStyle.STRICT));
+			}catch(Exception e) {
+				errors.add("期限は「YYYY/MM/DD」の形式で入力してください。");
+			}
+		}
 
 		// カテゴリーの必須入力チェック（ゼロ以外）
+		if(Integer.parseInt(categoryId) == 0 ) {
+			errors.add("カテゴリーを選択してください。");
+		}
 
 		// 金額の必須入力チェック
+		if(cost.equals("")) {
+			errors.add("金額を入力してください。");
+		}
 
 		// 金額が正の値かチェック
+		if(cost != "" && Integer.parseInt(cost) < 0) {
+			errors.add("金額は正の値で入力してください。");
+		}
 
+		//金額欄の数値チェック
 		return errors;
 	}
 }
