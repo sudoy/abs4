@@ -12,7 +12,7 @@
 
 		<hr class="mt-1">
 
-		<form action="#" method="post">
+		<form action="result.html" method="post">
 			<div class="form-group row">
 				<label for="date" class="offset-1 col-sm-2 col-form-label font-weight-bold">日付</label>
 
@@ -59,14 +59,14 @@
 			<div class="form-group row">
 				<label for="note" class="offset-1 col-sm-2 col-form-label font-weight-bold">備考 <span class="badge badge-success	">部分一致</span></label>
 				<div class="col-5">
-					<input type="text" class="form-control" id="note" placeholder="備考">
+					<input type="text" class="form-control" id="note" placeholder="備考" name="content">
 				</div>
 			</div>
 
 			<div class="form-group row">
 				<div class="offset-3 col-8">
 					<a href="index.html" class="btn btn-secondary">キャンセル</a>
-					<a href="result.html" class="btn btn-primary"><span class="oi oi-magnifying-glass"></span> 検 索</a>
+					<button type="submit" class="btn btn-primary"><span class="oi oi-magnifying-glass"></span> 検 索</button>
 				</div>
 			</div>
 		</form>

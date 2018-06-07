@@ -1,5 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
+<%@ page import="abs4.utils.HtmlUtils" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="_header.jsp"/>
 
@@ -32,6 +33,7 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach var="detail" items="${list}">
 						<tr class="table-light">
 							<th scope="row">
 								<div class="btn-group">
@@ -39,95 +41,19 @@
 										操作
 									</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="copy.html"><span class="oi oi-paperclip"></span> コピー</a>
+										<a class="dropdown-item" href="detail.html?id=${detail.id}"><span class="oi oi-spreadsheet"></span> 詳細</a>
+										<a class="dropdown-item" href="copy.html?id=${detail.id}"><span class="oi oi-paperclip"></span> コピー</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
+										<a class="dropdown-item delete-btn" href="delete.html?id=${detail.id}"><span class="oi oi-trash"></span> 削除</a>
 									</div>
 								</div>
 							</th>
-							<td>2018/05/30</td>
-							<td>日用品</td>
-							<td>ティッシュペーパー、歯磨き粉など</td>
-							<td class="text-right">-740</td>
+							<td>${detail.day }</td>
+							<td>${detail.categoryId}</td>
+							<td>${detail.content}</td>
+							<td class="text-right">${detail.cost}</td>
 						</tr>
-						<tr class="table-light">
-							<th scope="row">
-								<div class="btn-group">
-									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										操作
-									</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="copy.html"><span class="oi oi-paperclip"></span> コピー</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
-									</div>
-								</div>
-							</th>
-							<td>2018/05/30</td>
-							<td>食費</td>
-							<td>ランチ</td>
-							<td class="text-right">-800</td>
-						</tr>
-						<tr class="table-light">
-							<th scope="row">
-								<div class="btn-group">
-									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										操作
-									</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="copy.html"><span class="oi oi-paperclip"></span> コピー</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
-									</div>
-								</div>
-							</th>
-							<td>2018/05/30</td>
-							<td>交際費</td>
-							<td></td>
-							<td class="text-right">-6,800</td>
-						</tr>
-						<tr class="table-info">
-							<th scope="row">
-								<div class="btn-group">
-									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										操作
-									</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="copy.html"><span class="oi oi-paperclip"></span> コピー</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
-									</div>
-								</div>
-							</th>
-							<td>2018/05/31</td>
-							<td>アルバイト代</td>
-							<td></td>
-							<td class="text-right">120,000</td>
-						</tr>
-						<tr class="table-light">
-							<th scope="row">
-								<div class="btn-group">
-									<button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										操作
-									</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detail.html"><span class="oi oi-spreadsheet"></span> 詳細</a>
-										<a class="dropdown-item" href="update.html"><span class="oi oi-paperclip"></span> コピー</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item delete-btn" href="index.html"><span class="oi oi-trash"></span> 削除</a>
-									</div>
-								</div>
-
-							</th>
-							<td>2018/05/31</td>
-							<td>交際費</td>
-							<td></td>
-							<td class="text-right">-6,800</td>
-						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 			</div>

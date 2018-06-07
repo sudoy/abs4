@@ -56,7 +56,7 @@ public class IndexServlet extends HttpServlet {
 					+ "FROM  details d "
 					+ "JOIN categories c ON d.category_id = c.id "
 					+ "WHERE d.day BETWEEN ? AND ? "
-					+ "ORDER BY d.id";
+					+ "ORDER BY d.day";
 
 			ps1 = con.prepareStatement(sql1);
 			ps1.setString(1, firstDay.toString());
@@ -76,6 +76,7 @@ public class IndexServlet extends HttpServlet {
 
 				list.add(abs4);
 			}
+			req.setAttribute("list", list);
 
 
 			// 今月の収入
@@ -127,7 +128,6 @@ public class IndexServlet extends HttpServlet {
 			req.setAttribute("thisMonthOutgoDiff", thisMonthOutgo - lastMonthOutgo);
 
 			req.setAttribute("now", now);
-			req.setAttribute("list", list);
 			getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 
 		} catch (Exception e) {
