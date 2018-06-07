@@ -17,11 +17,4 @@ public class SearchServlet extends HttpServlet {
 		req.getServletContext().getRequestDispatcher("/WEB-INF/search.jsp").forward(req, resp);
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		req.getServletContext().getRequestDispatcher("/WEB-INF/search.jsp").forward(req, resp);
-
-	}
 }

@@ -6,9 +6,18 @@ public class Detail {
 	private int id;
 	private LocalDate day;
 	private String type;
+	private int categoryId;
 	private String content;
 	private int cost;
 
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
 
 	public int getId() {
 		return id;
